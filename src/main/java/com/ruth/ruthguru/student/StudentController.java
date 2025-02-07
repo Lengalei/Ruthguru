@@ -11,16 +11,10 @@ import java.util.List;
 @RestController
 @RequestMapping(path = "api/v1/student")
 public class StudentController {
-    @GetMapping
-    public List<Student> getStudents() {
-        return List.of(
-                new Student(
-                        20,
-                        "Ruth",
-                        LocalDate.of(2002, Month.FEBRUARY, 5),
-                        "ruth@example.com" // FIXED: Removed extra comma and added a proper email string
-                )
-        );
+    private final StudentService studentService;
+@Autowired
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
     }
     @GetMapping
     public List<Student> getStudents() {
